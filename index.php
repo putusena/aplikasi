@@ -108,11 +108,11 @@ include "koneksi.php";
 
               <!-- Menu sesuai akses -->
               <?php 
-              if($_SESSION['menu']=="MANAJEMEN"){
-                include "menu_manajemen.php";
+              if($_SESSION['menu']=="Administrator"){
+                include "menu_administrator.php";
               }
-              else if($_SESSION['menu']=="SISWA"){
-                include "menu_siswa.php";
+              else if($_SESSION['menu']=="Petugas"){
+                include "menu_petugas.php";
               }
               ?>
 
@@ -137,7 +137,7 @@ include "koneksi.php";
       ?>
 
       <footer class="main-footer">
-        <strong>Copyright &copy; 2023 <a href="#">Sena Progammer</a>.</strong>
+        <strong>Copyright &copy; 2023 <a href="#">Arya Sena</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
           <b>Version</b> 1.0

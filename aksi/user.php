@@ -42,7 +42,12 @@ if($_POST){
             $_SESSION['nama']=$user['nama'];
             $_SESSION['id']=$user['id_user'];
             $_SESSION['akses']=$user['hak_akses'];
-            $_SESSION['menu']="MANAJEMEN";
+            if($user['hak_akses']==1){
+                $_SESSION['menu']="Administrator";
+            } else {
+                $_SESSION['menu']="Petugas";
+            }
+            
             $_SESSION['status_proses']='';
 
             header("location:../index.php");
