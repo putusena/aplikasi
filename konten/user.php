@@ -27,7 +27,6 @@
             <h5>Data User</h5>
         </div>
         <div class="card-body">
-          <button class="btn bg-info mb-3" data-toggle="modal" data-target="#modalrecyclebin"> <i class="fas fa-recycle"></i> Recycle Bin</button>
             <table  id="example1" class="table table-hover">
                 <thead class="bg-blue">
                     <th>ID</th>
@@ -38,7 +37,7 @@
                     <th>Aksi</th>
                 </thead>
                 <?php
-                    $sql="SELECT * FROM user WHERE dihapus_pada IS NULL";
+                    $sql="SELECT * FROM user";
                     $query=mysqli_query($koneksi,$sql);
                     while($kolom=mysqli_fetch_array($query)){
                         ?>
@@ -144,55 +143,6 @@
             <br>
             <button type="submit" class="btn btn-block bg-blue"> <i class="fas fa-save"></i> Simpan </button>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- MODAL RECYCLE BIN -->
-<div class="modal fade" id="modalrecyclebin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Data Penghapusan Sementara</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <table class="table table-hover">
-                <thead class="bg-blue">
-                    <th>ID</th>
-                    <th>Nama</th>
-                    <th>Username</th>
-                    <th>Di Hapus</th>
-                    <th>Aksi</th>
-                </thead>
-                <?php
-                    $sql="SELECT * FROM user WHERE dihapus_pada IS NOT NULL";
-                    $query=mysqli_query($koneksi,$sql);
-                    while($kolom=mysqli_fetch_array($query)){
-                        ?>
-
-                    <tr>
-                        <td><?= $kolom['id_user']; ?></td>
-                        <td><?= $kolom['nama']; ?></td>
-                        <td><?= $kolom['username']; ?></td>
-                        <td><?= $kolom['dihapus_pada']; ?></td>
-                        <td> 
-                          <a onclick="return confirm('Yakin untuk mengembalikan data?')"  href="aksi/user.php?aksi=restore&id_user=<?= $kolom['id_user']; ?>"><i class="fas fa-trash-restore"></a></i>
-                        |
-                          <a onclick="return confirm('Yakin untuk hapus data ini secara permanen?')"  href="aksi/user.php?aksi=hapus-permanen&id_user=<?= $kolom['id_user']; ?>"><i class="fas fa-eraser"></a></i>
-                        </td>  
-                    </tr>
-                    <?php
-                    } // AKHIR WHILE
-                ?>
-            </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
