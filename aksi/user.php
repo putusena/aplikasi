@@ -58,10 +58,9 @@ if($_POST){
 }
 
 if($_GET){
-   
     if ($_GET['aksi']=='hapus'){
         $id_user=$_GET['id_user'];
-        $sql="DELETE FROM user WHERE id_user=$id_user";
+        $sql="DELETE FROM user WHERE id_user=$id_user"; // Hard Delete
         mysqli_query($koneksi,$sql);
         notifikasi($koneksi);
         header('location:../index.php?p=user');

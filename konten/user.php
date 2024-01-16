@@ -27,6 +27,7 @@
             <h5>Data User</h5>
         </div>
         <div class="card-body">
+
             <table  id="example1" class="table table-hover">
                 <thead class="bg-blue">
                     <th>ID</th>

@@ -78,7 +78,7 @@ include "koneksi.php";
         <!-- Brand Logo -->
         <a href="index.php" class="brand-link">
           <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light">SIP 1.0</span>
+          <span class="brand-text font-weight-light">Web Kasir</span>
         </a>
 
         <!-- Sidebar -->
@@ -86,7 +86,7 @@ include "koneksi.php";
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="dist/img/AdminLTELogo.png" class="img-circle elevation-2" alt="User Image">
+              <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
               <a href="#" class="d-block"><?= $_SESSION['nama']."<br>[".$_SESSION['menu']."]"; ?></a>
@@ -137,7 +137,7 @@ include "koneksi.php";
       ?>
 
       <footer class="main-footer">
-        <strong>Copyright &copy; 2023 <a href="#">Arya Sena</a>.</strong>
+        <strong>Copyright &copy; 2024 <a href="#">Gede Erick</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
           <b>Version</b> 1.0

@@ -19,6 +19,7 @@
                 <p>Pelanggan</p>
             </a>
         </li>
+
         <li class="nav-item">
             <a href="index.php?p=user" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -29,7 +30,7 @@
 </li>
 
 <li class="nav-item">
-    <a href="" class="nav-link">
+    <a href="#" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>
             Penjualan
@@ -44,13 +45,14 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="index.php?p=histori" class="nav-link">
+            <a href="index.php?p=history" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>History</p>
             </a>
         </li>
     </ul>
 </li>
+
 <li class="nav-item">
     <a href="index.php?p=laporan" class="nav-link">
         <i class="nav-icon fas fa-print"></i>
@@ -59,8 +61,9 @@
         </p>
     </a>
 </li>
+
 <li class="nav-item">
-    <a href="" class="nav-link">
+    <a href="#" class="nav-link">
         <i class="nav-icon fas fa-cog"></i>
         <p>
             Maintenance

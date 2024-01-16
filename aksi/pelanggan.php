@@ -5,22 +5,22 @@ include "../function.php";
 
 if ($_POST) {
     if ($_POST['aksi'] == 'tambah') {
-        $namapelanggan = $_POST['namapelanggan'];
-        $alamat = $_POST['alamat'];
-        $nomortelepon = $_POST['nomortelepon'];
-
-        $sql = "INSERT INTO pelanggan (pelangganid, namapelanggan, alamat, nomortelepon) VALUES (DEFAULT, '$namapelanggan', '$alamat', '$nomortelepon')";
+        $NamaPelanggan = $_POST['NamaPelanggan'];
+        $Alamat = $_POST['Alamat'];
+        $NomorTelepon = $_POST['NomorTelepon'];
+        
+        $sql = "INSERT INTO pelanggan (NamaPelanggan, Alamat, NomorTelepon) VALUES ('$NamaPelanggan', '$Alamat', '$NomorTelepon')";
 
         mysqli_query($koneksi, $sql);
         notifikasi($koneksi);
         header('location:../index.php?p=pelanggan');
     } else if ($_POST['aksi'] == 'ubah') {
-        $pelangganid = $_POST['pelangganid'];
-        $namapelanggan = $_POST['namapelanggan'];
-        $alamat = $_POST['alamat'];
-        $nomortelepon = $_POST['nomortelepon'];
+        $PelangganID = $_POST['PelangganID'];
+        $NamaPelanggan = $_POST['NamaPelanggan'];
+        $Alamat = $_POST['Alamat'];
+        $NomorTelepon = $_POST['NomorTelepon'];
 
-        $sql = "UPDATE pelanggan SET namapelanggan='$namapelanggan', alamat='$alamat', nomortelepon='$nomortelepon' WHERE pelangganid=$pelangganid";
+        $sql = "UPDATE pelanggan SET NamaPelanggan='$NamaPelanggan', Alamat='$Alamat', NomorTelepon='$NomorTelepon' WHERE PelangganID=$PelangganID";
 
         mysqli_query($koneksi, $sql);
         notifikasi($koneksi);
@@ -30,11 +30,12 @@ if ($_POST) {
 
 if ($_GET) {
     if ($_GET['aksi'] == 'hapus') {
-        $pelangganid = $_GET['pelangganid'];
-        $sql = "DELETE FROM pelanggan WHERE pelangganid=$pelangganid";
+        $PelangganID = $_GET['PelangganID'];
+        $sql = "DELETE FROM pelanggan WHERE PelangganID=$PelangganID";
+
         mysqli_query($koneksi, $sql);
         notifikasi($koneksi);
         header('location:../index.php?p=pelanggan');
-    }
+}
 }
 ?>
