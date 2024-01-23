@@ -5,12 +5,12 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1 class="m-0">Produk</h1>
+           <h1 class="m-0">History Penjualan</h1>
          </div><!-- /.col -->
          <div class="col-sm-6">
            <ol class="breadcrumb float-sm-right">
              <li class="breadcrumb-item"><a href="#">Data Utama</a></li>
-             <li class="breadcrumb-item active">Produk</li>
+             <li class="breadcrumb-item active">Penjualan</li>
            </ol>
          </div><!-- /.col -->
        </div><!-- /.row -->
@@ -23,39 +23,40 @@
      <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h5>Data Produk</h5>
+            <h5>Data Penjualan</h5>
         </div>
         <div class="card-body">
             <table  id="example1" class="table table-hover">
                 <thead class="bg-blue">
-                    <th>ProdukID</th>
-                    <th>Barcode</th>
-                    <th>Nama Produk</th>
-                    <th>Harga</th>
-                    <th>Stok</th>
+                    <th>ID</th>
+                    <th>TanggalPenjualan</th>
+                    <th>Pelanggan</th>
+                    <th>Total Belanja</th>
                     <th>Aksi</th>
                 </thead>
                 <?php
-                    $sql="SELECT * FROM produk";
+                    $sql="SELECT penjualan.*,pelanggan.NamaPelanggan FROM penjualan,pelanggan 
+                    WHERE penjualan.PelangganID=pelanggan.PelangganID";
                     $query=mysqli_query($koneksi,$sql);
                     while($kolom=mysqli_fetch_array($query)){
                         ?>
 
                     <tr>
-                        <td><?= $kolom['produkid']; ?></td>
-                        <td><?= $kolom['barcode']; ?></td>
-                        <td><?= $kolom['namaproduk']; ?></td>
-                        <td><?= $kolom['harga']; ?></td>
-                        <td><?= number_format ($kolom['stok']); ?></td>
+                        <td><?= $kolom['PenjualanID']; ?></td>
+                        <td><?= $kolom['TanggalPenjualan']; ?></td>
+                        <td><?= $kolom['NamaPelanggan']; ?></td>
+                        <td><?=number_format ($kolom['TotalHarga']); ?></td>
                         <td> 
-                          <a href="aksi/produk.php" data-toggle="modal" data-target="#modalubah<?= $kolom['produkid']; ?>"><i class="fas fa-edit"></i>
-                        </a>
-                        &nbsp;| &nbsp;
-                          <a onclick="return confirm('Yakin untuk hapus data ini?')"  href="aksi/produk.php?aksi=hapus&produkid=<?= $kolom['produkid']; ?>"><i class="fas fa-trash">
-
-                          </a></i></td>  
+                            <!-- Tommbol Print Nota -->
+                            <a href="#"><i class="fas fa-print"></i></a>
+                            <!-- Tommbol Informasi -->
+                            <a href="index.php?p=infojual&PenjualanID=<?= $kolom['PenjualanID']; ?>"><i class="fas fa-search"></i></a>
+                            <!-- Tommbol Hapus -->
+                            <a href="aksi/penjualan.php?aksi=hapus&PenjualanID=<?=$kolom['PenjualanID']; ?>" onclick="return confirm ('Yakin Akan Hapus Data Ini???')">
+                            <i class="fas fa-trash"></i></a>
+                          </td>  
                     </tr>
-                    <!-- MODAL UBAH PRODUK -->
+                    <!--Modal Ubah Produk -->
  <div class="modal fade" id="modalubah<?= $kolom['produkid']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -66,7 +67,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="aksi/produk.php" method="post">
+        <form action="aksi/history.php" method="post">
             <input type="hidden" name="aksi" value="ubah">
             <input type="hidden" name="produkid" value="<?=$kolom['produkid']; ?>">
 
@@ -119,7 +120,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="aksi/produk.php" method="post">
+        <form action="aksi/history.php" method="post">
             <input type="hidden" name="aksi" value="tambah">
             <label for="barcode">Barcode</label>
             <input type="number" name="barcode" class="form-control" required>
