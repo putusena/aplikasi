@@ -1,6 +1,6 @@
 <!---Menu Petugas -->
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="index.php?p=dashboard" class="nav-link">
         <i class="nav-icon fas fa-file"></i>
         <p>
             Penjualan

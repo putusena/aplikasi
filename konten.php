@@ -23,6 +23,10 @@ else if($_GET['p']=='laporan'){
     $title="Laporan Sistem";
     $konten="konten/laporan.php";
 }
+else if($_GET['p']=='backup'){
+    $title="Backup Sistem";
+    $konten="konten/backup.php";
+}
 else if($_GET['p']=='restore'){
     $title="Restore Sistem";
     $konten="konten/restore.php";

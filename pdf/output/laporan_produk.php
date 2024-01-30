@@ -38,12 +38,12 @@ $pdf = new TCPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // set document information
 $pdf->setCreator(PDF_CREATOR);
 $pdf->setAuthor('Arya Sena');
-$pdf->setTitle('Laporan Pembayaran Siswa');
-$pdf->setSubject('Pembayaran Siswa');
-$pdf->setKeywords('SIP,Pembayaran Siswa');
+$pdf->setTitle('Laporan Produk');
+$pdf->setSubject('Laporan Produk');
+$pdf->setKeywords('APP Kasir, Laporan Produk');
 
 // set default header data
-$pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'SIP 1.0', PDF_HEADER_STRING);
+$pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, 'APP KASIR 1.0', PDF_HEADER_STRING);
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -80,49 +80,34 @@ $pdf->AddPage();
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 
-$tanggal_awal=$_GET['tanggal_awal'];
-$tanggal_akhir=$_GET['tanggal_akhir'];
-$id_siswa=$_GET['id_siswa'];
+
 // create some HTML content
-$html = '<p align="center"><strong><bold>Laporan Pembayaran Siswa</strong></b></p><br>
-<b>Periode : '.date('d-F-Y',strtotime($tanggal_awal)). ' S/D '. date('d-F-Y',strtotime($tanggal_akhir)).'</b><br><br> 
+$html = '<p align="center"><strong><bold>Nota Penjualan</strong></b></p><br>
 <table style="width:100%; border-collapse:collapse; border: 1px solid black;" border="1"i>
     <tr style="font-weight:bold; text-align:center">
-        <td style="width:5%;">No</td>
-        <td style="width:5%;">NIS</td>
-        <td style="width:25%;">Nama</td>
-        <td style="width:15%;">Kelas</td>
-        <td style="width:15%;">Tanggal Pembayaran</td>
-        <td style="width:15%;">Status</td>
-        <td style="width:20%;">Nominal Pembayaran</td>
+        <td style="width:10%;">No</td>
+        <td style="width:20%;">Barcode</td>
+        <td style="width:30%;">Nama Produk</td>
+        <td style="width:20%;">Harga</td>
+        <td style="width:10%;">Stock</td>
     </tr>
 ';
 
-$sql="SELECT bayar.*,siswa.nis,siswa.nama,siswa.kelas,bayar_metode.metode FROM bayar,siswa,bayar_metode WHERE bayar.dihapus_pada IS NULL AND bayar.id_siswa=siswa.id_siswa AND bayar.id_bayar_metode=bayar_metode.id_bayar_metode AND bayar.tanggal_bayar BETWEEN '$tanggal_awal' AND '$tanggal_akhir' AND bayar.id_siswa=$id_siswa ORDER BY bayar.tanggal_bayar ASC";
-$query=mysqli_query($koneksi,$sql);
-$no=0;
-$total=0;
+$sql_produk="SELECT * FROM produk";
+$query=mysqli_query($koneksi,$sql_produk);
 while($bayar=mysqli_fetch_array($query)){
-    $no++;
-    $total=$total+$bayar['nominal_bayar'];
     $html.='
     <tr>
-        <td>'.$no.'</td>
-        <td>'.$bayar['nis'].'</td>
-        <td>'.$bayar['nama'].'</td>
-        <td>'.$bayar['kelas'].'</td>
-        <td>'.$bayar['tanggal_bayar'].'</td>
-        <td>'.$bayar['status_verifikasi'].'</td>
-        <td align="right">'.number_format($bayar['nominal_bayar']).'</td>
+        <td>'.$bayar['produkid'].'</td>
+        <td>'.$bayar['barcode'].'</td>
+        <td>'.$bayar['namaproduk'].'</td>
+        <td>'.$bayar['harga'].'</td>
+        <td>'.$bayar['stok'].'</td>
     </tr>
     ';
 }
 
 $html.='
-<tr>
-    <td colspan="6" align="center"><b>Grandtotal</b></td>
-    <td align="right"><b>'.number_format($total).'</b></td>
-</tr>
 </table>
 <br><br>
 -- Dicetak Pada : '.date('d-F-Y H:i:s').' --

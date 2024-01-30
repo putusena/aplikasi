@@ -84,6 +84,9 @@ if ($_POST) {
 
       // echo $sql4."<br>";
       mysqli_query($koneksi,$sql4);
+         // mengurangi nilai stok
+         $sql5="UPDATE produk SET stok=stok-$jumlah WHERE produkid=$produkid";
+         mysqli_query($koneksi,$sql5);
     }
     //Mengosongkan Keranjang 
     mysqli_query($koneksi,"DELETE FROM keranjang WHERE id_user=$id_user");
